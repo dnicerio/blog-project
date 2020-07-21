@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8080;
 // Connect to MongoDB Atlas
 const dbURI = 'mongodb+srv://dnicerio:HOTCAKE123@blog-project.9ey8o.mongodb.net/blog-project?retryWrites=true&w=majority';
 mongoose.connect(process.env.MONGODB_URI || dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((result) => app.listen(PORT))
+  .then((result) => app.listen(PORT, console.log(`Connected to MongoDB. Server is listening to port ${PORT}`)))
   .catch((err) => console.log(err));
 
 // Register View Engine
@@ -35,7 +35,7 @@ app.get('/about', (req, res) => {
 })
 
 // Blog Routes
-app.use('/blogs',blogRoutes);
+app.use('/blogs', blogRoutes);
 
 // 404 Page
 app.use((req, res) => {
