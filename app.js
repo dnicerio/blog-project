@@ -1,4 +1,5 @@
 // Imports
+// require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
@@ -9,8 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Connect to MongoDB Atlas
-const dbURI = 'mongodb+srv://dnicerio:HOTCAKE123@blog-project.9ey8o.mongodb.net/blog-project?retryWrites=true&w=majority';
-mongoose.connect(process.env.MONGODB_URI || dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+const dbURI = process.env.DATABASE_URL;
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => app.listen(PORT, console.log(`Connected to MongoDB. Server is listening to port ${PORT}`)))
   .catch((err) => console.log(err));
 
